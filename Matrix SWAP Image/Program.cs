@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Matrix_SWAP_Image
 {
@@ -10,7 +6,7 @@ namespace Matrix_SWAP_Image
     {
         static void Main(string[] args)
         {
-            var matrix = new int[3][] { new int[] { 1, 2, 3 }, new int[] { 4, 5, 6 }, new int[] { 7, 8, 9 } };
+            var matrix = new int[4][] { new int[] { 5, 1, 9, 11 }, new int[] { 2, 4, 8, 10 }, new int[] { 13, 3, 6, 7 }, new int[] { 15, 14, 12, 16 } };
             Rotate(matrix);
             foreach(var line in matrix)
                 Console.WriteLine(string.Join(",", line));
@@ -19,7 +15,7 @@ namespace Matrix_SWAP_Image
         static void Rotate(int[][] matrix)
         {
             int N = matrix.Length;
-
+            // transform
             for (int i = 0; i < N; i++)
             {
                 for (int j = i; j < N; j++)
@@ -30,13 +26,26 @@ namespace Matrix_SWAP_Image
                 }
             }
 
-            for (int i = 0; i < N; i++)
+            // swap columns
+            //for (int i = 0; i < N; i++)
+            //{
+            //    for (int j = 0; j < (N / 2); j++)
+            //    {
+            //        int temp = matrix[i][j];
+            //        matrix[i][j] = matrix[i][N - 1 - j];
+            //        matrix[i][N - 1 - j] = temp;
+            //    }
+            //}
+
+            for(int  i = 0; i < N; i++)
             {
-                for (int j = 0; j < (N / 2); j++)
+                int m = 0, n = N - 1;
+                while(m < n)
                 {
-                    int temp = matrix[i][j];
-                    matrix[i][j] = matrix[i][N - 1 - j];
-                    matrix[i][N - 1 - j] = temp;
+                    int temp = matrix[i][m];
+                    matrix[i][m] = matrix[i][n];
+                    matrix[i][n] = temp;
+                    m++; n--;
                 }
             }
         }
